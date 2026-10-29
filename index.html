@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concrétiser la commande – BTS CCST</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Fiche d'exercices en thème clair : blocs = séances, cartes dépliables, corrections masquables */
+:root {
+  --bg:        #f4f6f9;
+  --surface:   #ffffff;
+  --card:      #ffffff;
+  --border:    #dfe3ea;
+  --border-hi: #b9c0ce;
+  --text:      #1d2230;
+  --text-dim:  #5c6476;
+  --accent:    #b97d00;
+  --accent-bg: #fff6df;
+  --green:     #1b8047;
+  --green-bg:  #ecf7f0;
+  --green-bd:  #c9e6d4;
+  --green-dk:  #12552f;
+  --red:       #c23b3b;
+  --blue:      #2d69ad;
+  --blue-bg:   #edf3fb;
+  --purple:    #6f45ad;
+  --font-head: 'Syne', 'Trebuchet MS', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius:    10px;
+  color-scheme: light;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── HEADER ──────────────────────────────────────────────── */
+.site-header {
+  background: linear-gradient(135deg, #ffffff 0%, #eef2f8 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 44px 20px 32px;
+  text-align: center;
+}
+.site-header .kicker {
+  display: inline-block;
+  background: var(--accent);
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-bottom: 18px;
+}
+.site-header h1 {
+  font-family: var(--font-head);
+  font-size: clamp(24px, 6vw, 38px);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.site-header .sub {
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 400;
+  max-width: 540px;
+  margin: 0 auto 20px;
+}
+.legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 auto 22px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+
+/* ── NAV ANCRES ──────────────────────────────────────────── */
+.nav-anchors {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.nav-anchors a {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 14px;
+  text-decoration: none;
+  transition: border-color .15s, color .15s;
+}
+.nav-anchors a:hover, .nav-anchors a:focus-visible { border-color: var(--accent); color: var(--accent); }
+
+/* ── CONTENEUR PRINCIPAL ─────────────────────────────────── */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 36px 18px 80px;
+}
+
+/* ── TITRE DE BLOC ───────────────────────────────────────── */
+.bloc-titre {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 52px 0 6px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.bloc-titre:first-child { margin-top: 0; }
+.bloc-titre .icone { font-size: 26px; flex-shrink: 0; }
+.bloc-titre h2 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+.bloc-titre h2 small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+/* ── MÉMO ────────────────────────────────────────────────── */
+.memo {
+  background: var(--green-bg);
+  border: 1px solid var(--green-bd);
+  border-left: 4px solid var(--green);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin: 16px 0 24px;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.memo .memo-titre {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.memo code {
+  display: block;
+  background: #ffffff;
+  border: 1px solid var(--green-bd);
+  border-radius: 5px;
+  padding: 8px 12px;
+  color: var(--green-dk);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13.5px;
+  margin: 5px 0;
+}
+.memo .note { color: var(--text-dim); font-size: 13px; margin-top: 8px; }
+
+/* ── CARTE EXERCICE ──────────────────────────────────────── */
+.exo-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: border-color .15s;
+}
+.exo-card:hover { border-color: var(--border-hi); }
+
+.exo-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+.exo-header::-webkit-details-marker { display: none; }
+.exo-header:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.exo-num {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  min-width: 40px;
+}
+.badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.badge-1 { background: #e9f6ee; color: var(--green); border: 1px solid #bfe2cc; }
+.badge-2 { background: var(--accent-bg); color: #8a5d00; border: 1px solid #efd798; }
+.badge-3 { background: #fbeaea; color: var(--red); border: 1px solid #efc4c4; }
+.badge-exam { background: #f2ecfa; color: var(--purple); border: 1px solid #d9c9ef; }
+
+.exo-titre-txt {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1 1 200px;
+  min-width: 0;
+}
+.chevron { color: var(--text-dim); font-size: 13px; flex-shrink: 0; transition: transform .2s; }
+details[open] .chevron { transform: rotate(180deg); }
+
+/* ── CORPS DE L'EXERCICE ─────────────────────────────────── */
+.exo-body { padding: 0 16px 20px; border-top: 1px solid var(--border); }
+
+.contexte {
+  background: var(--blue-bg);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 16px;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.contexte strong { color: var(--text); }
+
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.tableau-donnees {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: var(--surface);
+}
+.tableau-donnees th {
+  background: #eef1f6;
+  color: var(--text-dim);
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.tableau-donnees td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+.tableau-donnees tr:last-child td { border-bottom: none; }
+.tableau-donnees td.num { font-weight: 700; color: var(--text); white-space: nowrap; }
+
+.questions { margin: 18px 0 0; }
+.question { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+.question .q-num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--accent);
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 11px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.question p { font-size: 14px; margin: 0; min-width: 0; }
+
+/* ── COUP DE POUCE ───────────────────────────────────────── */
+.ordre-grandeur {
+  background: var(--accent-bg);
+  border: 1px solid #efd798;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #6e4b00;
+  margin: 12px 0 0;
+}
+.ordre-grandeur::before { content: "💡 "; }
+
+/* ── BOUTON CORRECTION ───────────────────────────────────── */
+.btn-corrige {
+  background: var(--surface);
+  border: 1px solid var(--border-hi);
+  border-radius: 6px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 16px;
+  margin-top: 18px;
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-corrige:hover, .btn-corrige:focus-visible { border-color: var(--green); color: var(--green); }
+
+/* ── CORRECTION ──────────────────────────────────────────── */
+.correction {
+  display: none;
+  background: var(--green-bg);
+  border: 1px solid var(--green-bd);
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.correction.visible { display: block; }
+.correction .corr-etape {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--green-bd);
+}
+.correction .corr-etape:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.correction .c-num {
+  display: inline-block;
+  background: var(--green);
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  margin-right: 6px;
+}
+.correction code {
+  display: block;
+  background: #ffffff;
+  border: 1px solid var(--green-bd);
+  border-radius: 4px;
+  padding: 6px 12px;
+  color: var(--green-dk);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  margin: 5px 0;
+}
+.correction .res { font-family: var(--font-head); font-weight: 700; color: var(--text); }
+.correction .conclu { margin-top: 8px; font-size: 13.5px; color: #2c6244; font-style: italic; }
+.correction .tableau-corr { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; background: #ffffff; }
+.correction .tableau-corr th {
+  background: #dff0e6;
+  color: var(--green-dk);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  text-align: left;
+}
+.correction .tableau-corr td { padding: 6px 10px; border-bottom: 1px solid var(--green-bd); color: #24402f; vertical-align: top; }
+.correction .tableau-corr td.val { font-weight: 700; color: var(--green); }
+
+/* ── SÉPARATEUR ──────────────────────────────────────────── */
+hr.section-sep { border: none; border-top: 1px solid var(--border); margin: 54px 0 0; }
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 20px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 12px;
+  background: var(--surface);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .exo-titre-txt { font-size: 13.5px; }
+  .contexte { font-size: 13.5px; }
+  .tableau-donnees { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="kicker">🧾 Bloc 1 – BTS CCST 2e année · épreuve E5</div>
+  <h1>Concrétiser<br>la commande</h1>
+  <p class="sub">Chapitre 11. 20 exercices en 5 séances, avec l'entreprise RESO et son client OXO. Ouvre un exercice, réponds sur ton ordinateur, puis vérifie avec la correction.</p>
+  <div class="legende">
+    <span class="badge badge-1">⬆ décollage</span> je découvre
+    <span class="badge badge-2">◆ intermédiaire</span> j'applique
+    <span class="badge badge-exam">★ examen</span> je m'entraîne
+  </div>
+  <nav class="nav-anchors">
+    <a href="#referentiel">0 · Repères</a>
+    <a href="#bon">1 · Le bon de commande</a>
+    <a href="#calcul">2 · Calculer la commande</a>
+    <a href="#tva">3 · La TVA</a>
+    <a href="#cgv">4 · CGV, paiement et facture</a>
+    <a href="#examen">5 · Sujets type examen</a>
+  </nav>
+</header>
+
+<main>
+
+<div class="bloc-titre" id="referentiel">
+  <span class="icone">📌</span>
+  <h2><small>Repères · référentiel BTS CCST</small>Ce que tu travailles dans ce chapitre</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 épreuve E5 – bloc 1</div>
+  <code>Compétences : C1.2 conseiller, prescrire et communiquer (conditions de vente, contrat de vente, TVA applicable, devis, bons de commande et facture, modes de règlement) · C1.3 gérer le risque affaire et le risque client · C1.4 mettre en œuvre l'entretien de vente (chiffrage, formalisation de l'offre, conclusion et contractualisation).</code>
+  <code>Critères d'évaluation : une solution technique et commerciale répondant aux besoins du client est proposée · des outils de communication et de négociation adaptés au contexte sont mobilisés · la prestation définie est formalisée conformément à l'accord · le risque client/affaire est pris en compte.</code>
+  <code>Objectif final : en fin de négociation simulée, chiffrer l'offre sans erreur (de la remise à la TVA), annoncer les conditions de paiement et faire signer un bon de commande conforme, en 5 minutes.</code>
+</div>
+<div class="memo">
+  <div class="memo-titre">📚 sources utilisées</div>
+  <code>Manuel Nathan, chapitre 11 « Conclure la vente et maintenir une relation client durable », fiche ressource 2 « Concrétiser la commande », p. 202-203.</code>
+  <code>Référentiel et guide d'accompagnement pédagogique du BTS CCST (savoirs associés C1.2 à C1.4, définition de l'épreuve).</code>
+  <code><a href="https://entreprendre.service-public.gouv.fr/vosdroits/F31808" target="_blank" rel="noopener">Entreprendre.service-public.gouv.fr – mentions obligatoires sur une facture</a> (page vérifiée le 11 août 2026).</code>
+  <code><a href="https://bpifrance-creation.fr/encyclopedie/gerer-lentreprise/gestion-financiere-comptable/principaux-delais-paiement" target="_blank" rel="noopener">Bpifrance Création – les principaux délais de paiement</a>.</code>
+  <code><a href="https://www.entreprises.cci-paris-idf.fr/fiches-pratiques/factures-electroniques-quelles-sont-les-obligations-specifiques" target="_blank" rel="noopener">CCI Paris Île-de-France – factures électroniques : obligations spécifiques</a> (mise à jour du 28 août 2026).</code>
+  <code><a href="https://www.economie.gouv.fr/entreprises/tout-savoir-sur-tva" target="_blank" rel="noopener">Economie.gouv.fr – tout savoir sur la TVA</a> · <a href="https://www.entreprises.cci-paris-idf.fr/actualites/tva-electricite-et-gaz-passage-de-55-20-au-1er-aout-2025" target="_blank" rel="noopener">CCI Paris Île-de-France – TVA électricité et gaz : passage de 5,5 % à 20 % au 1er août 2025</a>.</code>
+</div>
+<hr class="section-sep">
+
+<!-- BLOC 1 -->
+<div class="bloc-titre" id="bon">
+  <span class="icone">✍️</span>
+  <h2><small>Séance 1</small>Bloc 1 – Le bon de commande : sécuriser l'accord</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Devis = proposition chiffrée du vendeur · bon de commande = accord écrit qui valide les termes de la vente, signé par les deux parties · facture = document qui constate la vente et demande le paiement.</code>
+  <code>Bon de commande : identification du vendeur (SIREN à 9 chiffres, mention RCS + ville du greffe, siège social) · identification du client (forme juridique, adresse, SIRET pour un professionnel) · description (référence, désignation, quantité, prix unitaire HT, taux de TVA) · totaux HT, TVA, TTC · modalités de paiement (mode, délais, acompte) · modalités de livraison (date, franco ou frais de port) · date et signatures.</code>
+  <code>Signaux d'achat = questions sur le délai, la mise en route, le paiement · techniques de conclusion : alternative (« lundi ou jeudi ? ») · récapitulative (on résume les points acceptés) · directe (« on valide ? »).</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 1</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Devis, bon de commande ou facture ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Tu es technico-commercial(e) en alternance chez <strong>RESO</strong>, éditeur de logiciels CRM et d'applications pour tablettes. Ta tutrice te demande de ranger les documents du dossier <strong>OXO</strong>. Défi : 3 minutes chrono, projeté au tableau.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Document</th><th>Description</th></tr></thead><tbody><tr><td>A</td><td>Proposition chiffrée envoyée à Paul Green après le premier rendez-vous, valable 30 jours</td></tr><tr><td>B</td><td>Document signé par Kenza Bénard et par ta tutrice, qui fixe produits, prix et date d'installation</td></tr><tr><td>C</td><td>Document émis après l'installation, avec numéro unique et date d'échéance</td></tr><tr><td>D</td><td>Nouvelle proposition chiffrée qui intègre une remise de 5 %</td></tr><tr><td>E</td><td>Document que la comptabilité d'OXO utilise pour déduire la TVA</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Identifie la nature de chaque document.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Classe-les dans l'ordre chronologique de l'affaire.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Explique pourquoi le bon de commande protège RESO autant qu'OXO.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> une seule signature des deux parties = un seul document d'engagement.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Document</th><th>Nature</th></tr></thead><tbody><tr><td>A</td><td class="val">devis</td></tr><tr><td>B</td><td class="val">bon de commande</td></tr><tr><td>C</td><td class="val">facture</td></tr><tr><td>D</td><td class="val">devis (version négociée)</td></tr><tr><td>E</td><td class="val">facture</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> A → D → B → C (= E).</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="res">Signé par les deux parties, il fige les termes de l'accord et évite les contestations futures.</p><p class="conclu">Critère E5 visé : « la prestation définie est formalisée conformément à l'accord ».</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 2</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Chasse aux oublis dans un bon de commande</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Un collègue a préparé le bon de commande d'OXO en vitesse. Ta tutrice refuse de l'envoyer : <em>« Il manque au moins cinq choses. »</em> Travail en binôme : le premier qui trouve les cinq oublis gagne.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Rubrique</th><th>Contenu du brouillon</th></tr></thead><tbody><tr><td>Vendeur</td><td>RESO, 14 rue des Artisans, 69003 Lyon</td></tr><tr><td>Client</td><td>OXO SAS, adresse, SIRET</td></tr><tr><td>Lignes de commande</td><td>désignation, quantité, prix unitaire HT</td></tr><tr><td>Totaux</td><td>total HT, total TTC</td></tr><tr><td>Paiement</td><td>–</td></tr><tr><td>Livraison</td><td>« au plus vite »</td></tr><tr><td>Signatures</td><td>vendeur</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Repère les mentions manquantes ou insuffisantes.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Pour chacune, indique le risque pour RESO.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> compare avec la liste du mémo, ligne par ligne.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Oubli</th><th>Risque</th></tr></thead><tbody><tr><td>SIREN et mention RCS de RESO</td><td class="val">document non conforme, vendeur mal identifié</td></tr><tr><td>taux de TVA et montant de la TVA</td><td class="val">désaccord sur le TTC</td></tr><tr><td>mode et délai de paiement</td><td class="val">retard de paiement, litige</td></tr><tr><td>date de livraison précise</td><td class="val">« au plus vite » ne vaut pas engagement : litige possible</td></tr><tr><td>signature du client et date</td><td class="val">aucune preuve de l'accord d'OXO</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="conclu">Un bon de commande incomplet augmente le risque client : c'est la compétence C1.3.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 3</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Remplir les lignes du bon de commande OXO</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">L'entretien avec OXO a abouti à l'objectif haut : CRM et application tablette pour <strong>3 utilisateurs</strong> (Paul Green, Hugo Lucciano et Inès Barka). RESO fournit aussi les tablettes, le paramétrage et une journée de formation. Ouvre un tableur et reconstruis le tableau.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Référence</th><th>Désignation</th><th>Quantité</th><th>Prix unitaire HT</th></tr></thead><tbody><tr><td>CRM-L1</td><td>licence CRM annuelle (par utilisateur)</td><td>3</td><td>1 200 €</td></tr><tr><td>APP-T1</td><td>application tablette (par utilisateur)</td><td>3</td><td>480 €</td></tr><tr><td>TAB-10</td><td>tablette professionnelle 10 pouces</td><td>3</td><td>390 €</td></tr><tr><td>PAR-F</td><td>paramétrage (forfait)</td><td>1</td><td>900 €</td></tr><tr><td>FOR-J</td><td>formation sur site (1 journée)</td><td>1</td><td>750 €</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Calcule le montant HT de chaque ligne.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Calcule le montant brut HT de la commande.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Quelle ligne représente la plus grosse part de la commande ? Calcule-la en %.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> montant brut HT = quantité × prix unitaire HT, puis on additionne les lignes.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Ligne</th><th>Calcul</th><th>Montant HT</th></tr></thead><tbody><tr><td>CRM-L1</td><td>3 × 1 200</td><td class="val">3 600 €</td></tr><tr><td>APP-T1</td><td>3 × 480</td><td class="val">1 440 €</td></tr><tr><td>TAB-10</td><td>3 × 390</td><td class="val">1 170 €</td></tr><tr><td>PAR-F</td><td>1 × 900</td><td class="val">900 €</td></tr><tr><td>FOR-J</td><td>1 × 750</td><td class="val">750 €</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> <code>Montant brut HT = 3 600 + 1 440 + 1 170 + 900 + 750 = 7 860 €</code></div>
+      <div class="corr-etape"><span class="c-num">3</span> <code>Part des licences CRM = 3 600 / 7 860 = 45,8 %</code><p class="conclu">Le cœur de l'offre est le CRM : c'est l'élément à défendre en priorité si OXO négocie le prix.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 4</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Conclure et faire signer en 3 minutes</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Fin d'entretien chez OXO. Kenza Bénard, directrice générale, demande : <em>« Si on signe, vous pouvez installer quand ? »</em> Jeu de rôle en binôme, un troisième étudiant observe et chronomètre.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Repère le signal d'achat dans la phrase de Kenza Bénard.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Joue la conclusion en 3 minutes : récapitulatif de l'accord, technique de conclusion, présentation du bon de commande.</p></div>
+      <div class="question"><span class="q-num">3</span><p>L'observateur note la technique utilisée et le moment où le bon de commande apparaît.</p></div>
+      <div class="question"><span class="q-num">4</span><p>Inversez les rôles et recommencez avec une autre technique.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> une question sur le délai = le client se projette après l'achat. C'est le moment de conclure, pas d'argumenter encore.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> La question porte sur l'installation : la cliente se voit déjà utilisatrice.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Attendus : récapituler les points acceptés (3 utilisateurs, CRM + application + tablettes, formation) · poser une alternative (« installation le 23 ou le 30 novembre ? ») · présenter le bon de commande et le relire avec la cliente · faire signer et dater · remercier et annoncer la suite.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Lors de la situation 2 de l'E5, la commission observe si tu sais conclure et formaliser l'accord, pas seulement argumenter.</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 2 -->
+<div class="bloc-titre" id="calcul" style="margin-top:40px">
+  <span class="icone">🧮</span>
+  <h2><small>Séance 2</small>Bloc 2 – Calculer le montant de la commande</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Montant brut HT = quantité × prix unitaire HT.</code>
+  <code>Montant net commercial HT = montant brut HT – (rabais, remises, ristournes).</code>
+  <code>Montant net financier = net commercial HT – escompte.</code>
+  <code>Montant net HT = net financier + frais de port · montant net à payer TTC = net HT + TVA.</code>
+  <code>Remise = réduction liée à la quantité ou au statut du client · rabais = réduction pour défaut ou retard · ristourne = réduction calculée sur le chiffre d'affaires d'une période · escompte = réduction pour paiement anticipé.</code>
+  <code>Remises successives : chaque taux s'applique au montant déjà réduit (on ne les additionne pas).</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 5</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Remise, rabais, ristourne ou escompte ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Quiz éclair projeté : 6 situations, 20 secondes chacune. Chaque étudiant répond sur son ordinateur avant la correction collective.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Situation</th><th>Description</th></tr></thead><tbody><tr><td>1</td><td>OXO commande plus de 10 licences : 8 % de réduction</td></tr><tr><td>2</td><td>Une tablette livrée rayée : 50 € de réduction</td></tr><tr><td>3</td><td>OXO paie à la commande au lieu de 30 jours : 2 % de réduction</td></tr><tr><td>4</td><td>La Clinique des Tilleuls a dépassé 50 000 € d'achats sur l'année : 3 % reversés en fin d'année</td></tr><tr><td>5</td><td>L'installation a lieu avec une semaine de retard : 100 € déduits</td></tr><tr><td>6</td><td>Bureau Plus est revendeur : 15 % de réduction permanente</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Nomme la réduction pour chaque situation.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Indique laquelle est une réduction financière et non commerciale.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> 1 remise (quantité) · 2 rabais (défaut) · 3 escompte · 4 ristourne · 5 rabais (retard) · 6 remise (statut de revendeur).</div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="res">L'escompte est une réduction financière : elle récompense un paiement anticipé.</p><p class="conclu">Il se calcule après les réductions commerciales, sur le net commercial.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 6</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Chiffrer la commande OXO de A à Z</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Reprends le montant brut HT de l'ex. 3 : <strong>7 860 €</strong>. RESO accorde la remise maximale autorisée de <strong>5 %</strong>. Kenza Bénard paie à la commande : escompte de <strong>2 %</strong>. Frais de port des tablettes : <strong>35 € HT</strong>. TVA à 20 %.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Construis la cascade de calcul dans un tableur, du brut au net à payer.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Calcule le montant net commercial, le net financier et le net HT.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Calcule la TVA et le net à payer TTC (arrondi au centime).</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> l'escompte se calcule sur le net commercial, pas sur le brut. Les frais de port s'ajoutent après l'escompte.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <code>Remise = 7 860 × 5 % = 393,00 €</code><code>Net commercial HT = 7 860 – 393 = 7 467,00 €</code></div>
+      <div class="corr-etape"><span class="c-num">2</span> <code>Escompte = 7 467 × 2 % = 149,34 €</code><code>Net financier = 7 467 – 149,34 = 7 317,66 €</code><code>Net HT = 7 317,66 + 35 = 7 352,66 €</code></div>
+      <div class="corr-etape"><span class="c-num">3</span> <code>TVA = 7 352,66 × 20 % = 1 470,53 €</code><code>Net à payer TTC = 7 352,66 + 1 470,53 = 8 823,19 €</code><p class="conclu">Ces montants alimentent le bas du bon de commande : total HT, remise, net commercial, escompte, TVA, TTC.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 7</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Le piège des remises en cascade</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">La <strong>Clinique des Tilleuls</strong> (300 salariés, service achats) commande <strong>20 licences CRM</strong> à 1 200 € HT. RESO accorde une remise de quantité de <strong>10 %</strong>, puis une remise de fidélité de <strong>3 %</strong>. L'acheteur affirme : <em>« Ça fait 13 % de remise au total. »</em></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Calcule le montant brut HT.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Calcule le net commercial HT en appliquant les remises successivement.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Calcule le taux de remise global réel. L'acheteur a-t-il raison ?</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> coefficient multiplicateur d'une remise de 10 % = 0,90.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <code>Brut HT = 20 × 1 200 = 24 000 €</code></div>
+      <div class="corr-etape"><span class="c-num">2</span> <code>Après remise 1 = 24 000 × 0,90 = 21 600 €</code><code>Net commercial = 21 600 × 0,97 = 20 952 €</code></div>
+      <div class="corr-etape"><span class="c-num">3</span> <code>Taux global = 1 – (0,90 × 0,97) = 12,7 %</code><p class="res">L'acheteur se trompe : la remise réelle est de 12,7 %, pas de 13 %.</p><p class="conclu">Savoir le démontrer calmement face à un acheteur, c'est défendre la marge de RESO (C1.3).</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 8</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Défendre son prix, chiffres en main</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Au moment de signer, Paul Green intervient : <em>« Un concurrent nous fait 10 %. Alignez-vous. »</em> Ta marge de manœuvre est de <strong>5 %</strong> au maximum.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Calcule le net commercial avec 10 % de remise et le manque à gagner pour RESO par rapport à 5 %.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Prépare une réponse qui refuse les 10 % sans casser la relation, avec une contrepartie.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Joue la scène en 2 minutes face à un binôme qui joue Paul Green.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> une concession se donne toujours contre une contrepartie (durée d'engagement, paiement comptant, recommandation).</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <code>Net commercial à 10 % = 7 860 × 0,90 = 7 074 €</code><code>Manque à gagner = 7 467 – 7 074 = 393 € HT</code></div>
+      <div class="corr-etape"><span class="c-num">2</span> Attendus : faire préciser l'offre concurrente (contenu, services inclus) · rappeler la valeur de l'offre RESO (paramétrage, formation sur site, application tablette) · proposer une contrepartie dans la marge autorisée, par exemple l'escompte de 2 % pour paiement à la commande.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Critère E5 : « une démarche proactive de négociation est mise en œuvre ». Le chiffrage juste rend l'argument crédible.</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 3 -->
+<div class="bloc-titre" id="tva" style="margin-top:40px">
+  <span class="icone">🏛️</span>
+  <h2><small>Séance 3</small>Bloc 3 – Déterminer le montant de la TVA</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>TVA = impôt sur la consommation, facturé au client. L'entreprise la collecte pour l'État mais n'en est pas redevable.</code>
+  <code>Taux : normal 20 % (la majorité des biens et services) · intermédiaire 10 % (restauration, transport, hébergement, travaux de rénovation dans les logements anciens) · réduit 5,5 % (produits alimentaires, cantines scolaires…) · super réduit 2,1 % (médicaments remboursables, presse).</code>
+  <code>Montant TVA = prix HT × taux · prix TTC = prix HT × (1 + taux) · prix HT = prix TTC / (1 + taux).</code>
+  <code>TVA à décaisser = TVA collectée (sur les ventes) – TVA déductible (sur les achats). Si négatif : crédit de TVA.</code>
+  <code>Vigilance : les taux évoluent. Exemple : électricité et gaz passés de 5,5 % à 20 % au 1er août 2025 (CCI Paris Île-de-France). Vérifie toujours sur un site officiel.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 9</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Quel taux de TVA ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Ta tutrice te confie les notes de frais et achats du mois. Classe-les par taux. Défi en équipe de 3 : l'équipe la plus rapide et sans erreur marque un point.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Dépense</th></tr></thead><tbody><tr><td>1</td><td>licence CRM vendue à OXO</td></tr><tr><td>2</td><td>repas d'affaires au restaurant avec Paul Green</td></tr><tr><td>3</td><td>billet de train pour l'installation chez OXO</td></tr><tr><td>4</td><td>nuit d'hôtel du technicien</td></tr><tr><td>5</td><td>abonnement à un quotidien d'information</td></tr><tr><td>6</td><td>tablettes 10 pouces achetées au fournisseur</td></tr><tr><td>7</td><td>paniers de fruits et légumes pour le stand d'un salon</td></tr><tr><td>8</td><td>abonnement électricité des bureaux</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Associe un taux de TVA à chaque dépense.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Repère la dépense dont le taux indiqué dans un manuel antérieur à 2025 serait faux aujourd'hui.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>N°</th><th>Taux</th></tr></thead><tbody><tr><td>1, 6</td><td class="val">20 %</td></tr><tr><td>2, 3, 4</td><td class="val">10 %</td></tr><tr><td>7</td><td class="val">5,5 %</td></tr><tr><td>5</td><td class="val">2,1 %</td></tr><tr><td>8</td><td class="val">20 % depuis le 1er août 2025</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="res">L'électricité : les manuels plus anciens la classent à 5,5 %.</p><p class="conclu">Un technico-commercial vérifie les règles en vigueur avant de chiffrer : c'est une part de l'obligation de conseil (C1.2).</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 10</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Passer du HT au TTC, et retour</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Hugo Lucciano, chez OXO, t'envoie un message : <em>« Votre application coûte 1 440 € TTC, donc 1 440 – 20 % = 1 152 € HT, non ? »</em></div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Élément</th><th>Prix connu</th><th>Taux</th></tr></thead><tbody><tr><td>tablette 10 pouces</td><td>390 € HT</td><td>20 %</td></tr><tr><td>repas d'affaires</td><td>66 € TTC</td><td>10 %</td></tr><tr><td>nuit d'hôtel</td><td>99 € TTC</td><td>10 %</td></tr><tr><td>abonnement presse</td><td>102,10 € TTC</td><td>2,1 %</td></tr><tr><td>application tablette (3 utilisateurs)</td><td>1 440 € TTC</td><td>20 %</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Calcule le prix manquant (HT ou TTC) et le montant de TVA pour chaque élément.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Explique l'erreur de Hugo Lucciano en une phrase simple, comme tu le ferais par message.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> pour retrouver le HT, on divise par 1,20 ; on ne retire jamais 20 % du TTC.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Élément</th><th>HT</th><th>TVA</th><th>TTC</th></tr></thead><tbody><tr><td>tablette</td><td>390,00 €</td><td class="val">78,00 €</td><td class="val">468,00 €</td></tr><tr><td>repas</td><td class="val">60,00 €</td><td class="val">6,00 €</td><td>66,00 €</td></tr><tr><td>hôtel</td><td class="val">90,00 €</td><td class="val">9,00 €</td><td>99,00 €</td></tr><tr><td>presse</td><td class="val">100,00 €</td><td class="val">2,10 €</td><td>102,10 €</td></tr><tr><td>application</td><td class="val">1 200,00 €</td><td class="val">240,00 €</td><td>1 440,00 €</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> <code>HT = 1 440 / 1,20 = 1 200 € (et non 1 152 €)</code><p class="conclu">Exemple de réponse : « Les 20 % se calculent sur le HT, pas sur le TTC : 1 440 / 1,20 = 1 200 € HT. »</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 11</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">TVA collectée, TVA déductible</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">En novembre, RESO a réalisé <strong>48 000 € HT</strong> de ventes, dont la commande OXO, et <strong>21 500 € HT</strong> d'achats (tablettes, hébergement des serveurs). Toutes les opérations sont à 20 %. Paul Green demande : <em>« La TVA que je vous paie, c'est un bénéfice pour vous ? »</em></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Calcule la TVA collectée et la TVA déductible de RESO.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Calcule la TVA à reverser à l'État.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Réponds à Paul Green en deux phrases.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <code>TVA collectée = 48 000 × 20 % = 9 600 €</code><code>TVA déductible = 21 500 × 20 % = 4 300 €</code></div>
+      <div class="corr-etape"><span class="c-num">2</span> <code>TVA à décaisser = 9 600 – 4 300 = 5 300 €</code></div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="res">Non : RESO collecte la TVA pour l'État et la reverse. OXO, assujettie, pourra elle-même déduire la TVA payée sur la facture RESO.</p><p class="conclu">C'est pour cela qu'en B to B on négocie en HT.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 12</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Annoncer le prix sans se tromper</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Dans ta situation de négociation E5, tu devras annoncer un prix. La commission vérifie que tu maîtrises tes chiffres.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Identifie le taux de TVA applicable aux produits ou services de ta fiche descriptive et note ta source.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Calcule ton offre principale : brut, remise, net commercial, net HT, TVA, TTC.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Annonce ton prix à l'oral en 30 secondes devant un binôme, puis réponds à sa question : <em>« C'est HT ou TTC ? »</em></p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> annonce d'abord la valeur pour le client, puis le prix HT, puis la condition (remise, escompte).</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Attendus : taux exact et source officielle (entreprise, administration fiscale, service-public).</div>
+      <div class="corr-etape"><span class="c-num">2</span> Le chiffrage figure en annexe de ta fiche descriptive (devis ou tarifs et CGV).</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">En B to B, on annonce en HT et on le précise. Un prix flou ou faux fait perdre de la crédibilité face à la commission.</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 4 -->
+<div class="bloc-titre" id="cgv" style="margin-top:40px">
+  <span class="icone">⚖️</span>
+  <h2><small>Séance 4</small>Bloc 4 – CGV, conditions de paiement et facture</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>CGV = conditions générales de vente : modalités de livraison · barème des prix unitaires · réductions (rabais, remises, ristournes) · conditions de règlement (dont le taux des pénalités de retard). Elles doivent être communiquées à tout acheteur professionnel qui en fait la demande.</code>
+  <code>Délais de paiement entre professionnels : 30 jours après livraison ou prestation par défaut · si négocié : 60 jours au maximum après la date de facture, ou 45 jours fin de mois.</code>
+  <code>Retard de paiement : pénalités dues sans rappel (taux minimum = 3 fois le taux d'intérêt légal) + indemnité forfaitaire de 40 € par facture, pour un client professionnel.</code>
+  <code>Facture : numéro unique et chronologique · date · vendeur et client · désignation, quantité, prix unitaire HT, taux de TVA · réductions · totaux HT et TTC · date d'échéance · escompte (ou « néant ») · pénalités et indemnité de 40 € · numéro du bon de commande s'il existe.</code>
+  <code>Facture électronique : réception obligatoire pour toutes les entreprises depuis le 1er septembre 2026 · émission obligatoire pour les grandes entreprises et ETI depuis cette date, pour les PME et TPE au 1er septembre 2027.</code>
+  <code>Clause de réserve de propriété = le vendeur reste propriétaire du bien jusqu'au paiement complet.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 13</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Vrai ou faux sur les CGV et le paiement</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Vote à main levée, affirmation par affirmation, projetée au tableau. Chaque erreur collective coûte un point à la classe.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>RESO peut refuser de communiquer ses CGV à OXO qui les demande.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Sans accord particulier, OXO doit payer 30 jours après la livraison ou la prestation.</p></div>
+      <div class="question"><span class="q-num">3</span><p>RESO et la Clinique des Tilleuls peuvent convenir d'un paiement à 90 jours après la facture.</p></div>
+      <div class="question"><span class="q-num">4</span><p>L'indemnité de 40 € s'applique aussi aux particuliers.</p></div>
+      <div class="question"><span class="q-num">5</span><p>Une facture sans escompte doit le préciser.</p></div>
+      <div class="question"><span class="q-num">6</span><p>Depuis septembre 2026, OXO doit pouvoir recevoir des factures électroniques.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Faux : les CGV doivent être communiquées à tout acheteur professionnel qui en fait la demande.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Vrai : c'est le délai par défaut.</div>
+      <div class="corr-etape"><span class="c-num">3</span> Faux : 60 jours après la date de facture au maximum (ou 45 jours fin de mois). Le délai de 90 jours est réservé à certains cas particuliers, comme l'export hors Union européenne.</div>
+      <div class="corr-etape"><span class="c-num">4</span> Faux : elle ne peut être réclamée qu'à un client professionnel.</div>
+      <div class="corr-etape"><span class="c-num">5</span> Vrai : la mention « escompte pour paiement anticipé : néant » est attendue.</div>
+      <div class="corr-etape"><span class="c-num">6</span> <p class="res">Vrai : la réception est obligatoire pour toutes les entreprises depuis le 1er septembre 2026.</p><p class="conclu">Sources : service-public, Bpifrance Création, CCI Paris Île-de-France (voir Repères).</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 14</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Calculer une date d'échéance</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">RESO installe la solution chez la Clinique des Tilleuls le <strong>12 novembre 2026</strong> et émet la facture le <strong>15 novembre 2026</strong> (20 952 € HT).</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Sans clause particulière, calcule la date d'échéance.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Les CGV prévoient 60 jours date de facture : calcule la nouvelle échéance.</p></div>
+      <div class="question"><span class="q-num">3</span><p>La clinique paie le 25 janvier 2027. Quelles sommes RESO peut-elle réclamer en plus ?</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> utilise une fonction date du tableur (date + nombre de jours) pour éviter les erreurs de calendrier.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <code>12 novembre 2026 + 30 jours = 12 décembre 2026</code></div>
+      <div class="corr-etape"><span class="c-num">2</span> <code>15 novembre 2026 + 60 jours = 14 janvier 2027</code></div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="res">Des pénalités de retard à partir du 15 janvier 2027, au taux prévu dans les CGV, et l'indemnité forfaitaire de 40 €.</p><p class="conclu">Avant de relancer, le technico-commercial pèse l'intérêt de la relation : c'est la gestion du risque client (C1.3).</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 15</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Contrôler la facture OXO avant envoi</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Le service comptable a préparé la facture n° 2026-1187 du 15 novembre 2026 pour OXO. Ta tutrice te demande de la vérifier : <em>« Une facture fausse, c'est un client qui ne paie pas. »</em></div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Ligne de la facture</th><th>Contenu</th></tr></thead><tbody><tr><td>Total brut HT</td><td>7 860,00 €</td></tr><tr><td>Remise 5 %</td><td>393,00 €</td></tr><tr><td>Net commercial</td><td>7 467,00 €</td></tr><tr><td>Escompte 2 %</td><td>149,34 €</td></tr><tr><td>Frais de port</td><td>35,00 €</td></tr><tr><td>Total HT</td><td>7 352,66 €</td></tr><tr><td>TVA 20 %</td><td>1 572,00 €</td></tr><tr><td>Total TTC</td><td>8 924,66 €</td></tr><tr><td>Mentions de paiement</td><td>« pénalités de retard : 3 fois le taux d'intérêt légal »</td></tr><tr><td>Références</td><td>–</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Trouve l'erreur de calcul et corrige-la.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Repère les mentions obligatoires manquantes.</p></div>
+      <div class="question"><span class="q-num">3</span><p>RESO est une PME : le SIREN d'OXO doit-il déjà figurer sur la facture ?</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> compare avec ton calcul de l'ex. 6 et avec la liste du mémo.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> La TVA a été calculée sur le brut (7 860 × 20 % = 1 572). <code>TVA = 7 352,66 × 20 % = 1 470,53 €</code><code>TTC = 7 352,66 + 1 470,53 = 8 823,19 €</code></div>
+      <div class="corr-etape"><span class="c-num">2</span> Manquent : la date d'échéance (ou de règlement) · l'indemnité forfaitaire de 40 € · le numéro du bon de commande signé par OXO.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="res">Pas encore obligatoire pour RESO : les nouvelles mentions (dont le SIREN du client) s'appliquent aux PME à partir du 1er septembre 2027.</p><p class="conclu">L'ajouter dès maintenant est une bonne pratique pour anticiper la facture électronique.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 16</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">« On paie à 90 jours, c'est notre règle »</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">L'acheteur de la Clinique des Tilleuls exige un paiement à 90 jours date de facture pour la commande de 20 952 € HT. Jeu de rôle de 3 minutes en binôme, puis échange avec le groupe.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Prépare ta réponse : rappel du cadre légal, reformulation du besoin réel de l'acheteur, solution alternative.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Joue la scène. L'observateur vérifie que tu restes courtois, précis et ferme.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Note la clause des CGV de RESO qui protège l'entreprise en cas de non-paiement.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> derrière « 90 jours », il y a souvent un besoin de trésorerie : cherche une réponse à ce besoin, dans la loi.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Attendus : le délai maximal est de 60 jours après la date de facture (ou 45 jours fin de mois) · reformuler (« vous cherchez à étaler la dépense, c'est bien ça ? ») · proposer une alternative si RESO l'autorise : paiement en plusieurs fois dans la limite légale, ou escompte pour paiement anticipé.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Éviter le refus sec : on explique la règle, puis on propose.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="res">La clause de réserve de propriété, ainsi que les pénalités de retard et l'indemnité de 40 €.</p><p class="conclu">Critère E5 : « le risque client/affaire est pris en compte ».</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 5 -->
+<div class="bloc-titre" id="examen" style="margin-top:40px">
+  <span class="icone">🎓</span>
+  <h2><small>Séance 5</small>Bloc 5 – Entraînement à l'épreuve E5</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Épreuve E5 – conception et négociation de solutions technico-commerciales (anciennement E4).</code>
+  <code>Situation 1 : présentation orale de la préparation d'un entretien (20 min au maximum) + entretien avec la commission (10 min au maximum).</code>
+  <code>Situation 2 : négociation simulée à partir de la situation modifiée (15 à 20 min) + entretien (10 min au maximum).</code>
+  <code>Annexes de la fiche descriptive : outils de négociation (plan de découverte, argumentaire, fiche de traitement des objections) et supports technico-commerciaux (tarifs et CGV, documentations…).</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 17</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Sujet complet : conclure l'affaire OXO</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Tu termines la négociation simulée avec Kenza Bénard. Il te reste <strong>5 minutes</strong> pour conclure et formaliser l'accord (blocs 1 à 4).</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Récapitule l'offre retenue et annonce le chiffrage complet (net commercial, escompte, frais de port, TVA, TTC).</p></div>
+      <div class="question"><span class="q-num">2</span><p>Annonce les conditions de paiement et de livraison.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Présente le bon de commande projeté et fais-le valider.</p></div>
+      <div class="question"><span class="q-num">4</span><p>Le groupe évalue avec les critères : solution adaptée proposée · outils mobilisés · prestation formalisée conformément à l'accord.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Chiffrage attendu : brut 7 860 € HT · remise 5 % · net commercial 7 467 € · escompte 2 % · port 35 € · net HT 7 352,66 € · TVA 1 470,53 € · TTC 8 823,19 €.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Paiement à la commande (condition de l'escompte) · installation et formation à une date précise.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Bon de commande complet, relu avec la cliente, signé et daté par les deux parties.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 18</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Les questions de la commission</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Après la simulation, la commission t'interroge pendant 10 minutes au maximum sur la valeur ajoutée de ton entretien et sur la suite de l'affaire.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Pourquoi avoir proposé un escompte plutôt qu'une remise supplémentaire ?</p></div>
+      <div class="question"><span class="q-num">2</span><p>Que se passe-t-il si OXO ne paie pas ?</p></div>
+      <div class="question"><span class="q-num">3</span><p>Quelles actions de suivi prévoyez-vous après la signature ?</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> L'escompte améliore la trésorerie de RESO et réduit le risque d'impayé, alors qu'une remise réduit seulement la marge.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Pénalités de retard, indemnité de 40 €, relance amiable puis mise en demeure · clause de réserve de propriété sur les tablettes si elle figure dans les CGV.</div>
+      <div class="corr-etape"><span class="c-num">3</span> Confirmer la date d'installation, mettre à jour le CRM, appeler après la formation pour mesurer la satisfaction, préparer le renouvellement des licences.</div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 19</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Changement de paramètre : offre non validée</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">La commission modifie la situation : l'offre de 8 823,19 € TTC n'a pas été validée lors de l'entretien précédent. Kenza Bénard a reçu un budget réduit et demande <strong>10 % de remise</strong> et un <strong>paiement à 90 jours</strong>.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Reformule tes objectifs haut, bas et repli.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Prépare un nouveau chiffrage qui respecte la marge de 5 % (par exemple moins d'éléments ou une offre en deux temps).</p></div>
+      <div class="question"><span class="q-num">3</span><p>Joue 5 minutes de négociation avec un binôme qui joue Kenza Bénard.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> on adapte l'offre (quantités, options), pas les règles (marge maximale, délai légal).</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Exemple : haut = offre complète à 5 % avec escompte · bas = CRM et application sans les tablettes · repli = signer le CRM seul et planifier l'application au trimestre suivant.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Exemple sans tablettes ni port : <code>Brut = 7 860 – 1 170 = 6 690 € HT</code><code>Net commercial = 6 690 × 0,95 = 6 355,50 € HT</code></div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Attendus : refuser les 90 jours (limite légale de 60 jours) et les 10 % (hors marge), sans rompre le dialogue, avec une offre adaptée au budget.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 20</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Check-list de ta fiche descriptive</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Ta fiche descriptive doit être rendue en février. Vérifie que ta partie « conclusion » est prête.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Vérifie que tes annexes contiennent : tarifs, CGV de ton entreprise, un devis ou bon de commande type, ton chiffrage avec TVA.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Note les conditions de paiement réelles de ton entreprise (délai, escompte, pénalités).</p></div>
+      <div class="question"><span class="q-num">3</span><p>Liste 3 éléments à demander à ton tuteur avant février.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Le guide d'accompagnement cite parmi les supports technico-commerciaux attendus en annexe les tarifs et conditions générales de vente.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Ces informations te permettent de répondre sans hésiter aux objections sur le prix et le paiement.</div>
+      <div class="corr-etape"><span class="c-num">3</span> Exemples : CGV à jour · marge de manœuvre autorisée sur les remises · modèle de bon de commande et procédure de signature.</div>
+    </div>
+  </div>
+</details>
+</main>
+
+<footer class="site-footer">
+  BTS CCST – Bloc 1, épreuve E5 &nbsp;|&nbsp; Chapitre 11 : concrétiser la commande &nbsp;|&nbsp; 20 exercices progressifs
+</footer>
+
+
+<script>
+function toggleCorr(btn) {
+  const corr = btn.nextElementSibling;
+  const isVisible = corr.classList.contains('visible');
+  corr.classList.toggle('visible', !isVisible);
+  btn.textContent = isVisible ? '✅ Voir la correction' : '🔒 Masquer la correction';
+}
+</script>
+</body>
+</html>
